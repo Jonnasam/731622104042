@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>URL Shortener</title>
+        <style>
+            body{
+                background: #f0f0f0;
+                padding: 20px;
+            }
+            .main-container{
+                max-width:400px;
+                background-color: aliceblue;
+                padding: 20px;
+                margin:auto;
+                border-radius: 8px;
+                box-shadow: 0 0 10px #ccc;
+            }
+            input{
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            button{
+                width: 100%;
+                padding:10px;
+                background: #75d4fa;
+                color: black;
+                border: none;
+                cursor:pointer;
+            }
+            button:hover{
+                background: #2583a8;
+            }
+            url-container{
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="main-container">
+        <h1>URL Shortener </h1>
+            <input type="text" id="longurl" placeholder="Enetr your url" >
+            <button onclick="shortener()">Shorten</button>
+            <div id="url-container"></div>
+            </div>
+            <script>
+                function shortener(){
+                    const longurl=document.getElementById("longurl").value
+                    const shortcode= MAth.random().toString(36).substr(2,5)
+                    const shorturl= '${window.location.original.origin}/${shortcode}'
+                    localStorage.setItem(shortcode,longurl)
+                    const output=`<P>Short URL: <a href="${shorturl}" target=_blank">${shorturl}</a></p>
+                        <button onclick="navigator.clipboard.writeText('${shorturl}')">copy</button>`
+                        document.getElementById("url-container").innerHTML=output
+                }
+            </script>
+    </body>
+</html>
